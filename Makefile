@@ -16,7 +16,7 @@ run-server:
 
 .PHONY: migrate
 migrate:
-	poetry run python -m core.manage runserver
+	poetry run python -m core.manage migrate
 
 .PHONY: migrations
 migrations:
