@@ -1,10 +1,11 @@
 [flake8]
-ignore = C101,D403,F403,F405,I100,I201,W503,W504
+ignore = C101,D403,F403,F405,I100,I201,W503,W504,Q000
 exclude =
         .git,
         __pycache__,
         .idea,
-        Vendor-Management.iml
+        Vendor-Management.iml,
+        .mypy_cache
 
 filename = *.py
 accept-encodings = utf-8
