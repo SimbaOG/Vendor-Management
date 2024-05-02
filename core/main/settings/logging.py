@@ -1,7 +1,6 @@
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-
     'formatters': {
         'standard': {
             'format': '%(asctime)s %(levelname)s %(name)s %(message)s'
@@ -16,7 +15,7 @@ LOGGING = {
         }
     },
     'loggers': {
-        logger_name : {
+        logger_name: {
             'level': 'WARNING',
             'propagate': True,
         } for logger_name in ('django', 'django.request', 'django.db.backends', 'core')
