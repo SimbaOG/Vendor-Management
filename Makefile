@@ -4,7 +4,11 @@ install:
 
 .PHONY: install-pre-commit
 install-pre-commit:
-	poetry run pre-commit uninstall; poetry run pre-commit install
+	poetry run pre-commit install
+
+.PHONY: uninstall-pre-commit
+uninstall-pre-commit:
+	poetry run pre-commit uninstall
 
 .PHONY: linter
 linter:
@@ -27,5 +31,5 @@ superuser:
 	poetry run python -m core.manage createsuperuser
 
 .PHONY: update
-update:	install migrate install-pre-commit;
+update:	install migrate uninstall-pre-commit install-pre-commit;
 

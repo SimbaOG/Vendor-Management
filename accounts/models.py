@@ -1,17 +1,19 @@
-from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.db import models
+
+from accounts.auth.helpers import valid_upto_date
 from core.core.utils.tokens import generate_auth_token
+
 # Create your models here.
 
 
 class MyAccountManager(BaseUserManager):
+
     def create_user(self, email, password=None):
         if not email:
             raise ValueError("User must have an email!")
 
-        user = self.model(
-            email=self.normalize_email(email),
-        )
+        user = self.model(email=self.normalize_email(email),)
 
         user.set_password(password)
         user.save(using=self._db)
@@ -50,6 +52,7 @@ class Account(AbstractBaseUser):
 class TokenManager(models.Model):
     user = models.ForeignKey("Account", on_delete=models.CASCADE)
     token = models.TextField(default=generate_auth_token, null=False, primary_key=True, db_index=True)
+    valid_upto = models.DateTimeField(default=valid_upto_date, null=False)
 
     class Meta:
         db_table = 'access_tokens'

@@ -26,4 +26,5 @@ repos:
     rev: 'v0.910'
     hooks:
       - id: mypy
+        exclude: ^.*\b(migrations)\b.*$
         additional_dependencies: [ types-requests, types-PyYAML, types-toml ]
