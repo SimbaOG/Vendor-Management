@@ -22,6 +22,7 @@ class PurchaseOrder(models.Model):
     quality_rating = models.FloatField(null=True)
     issue_date = models.DateTimeField(auto_now_add=True)
     acknowledgement_date = models.DateTimeField(null=True)
+    completed_at = models.DateTimeField(null=True)
 
     class Meta:
         db_table = 'vendor\".\"purchase_orders'
