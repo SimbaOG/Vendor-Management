@@ -23,7 +23,12 @@ class UserAuthentication(TokenAuthentication):
         :return: Account Object or None
         """
 
-        auth = request.META.get('HTTP_AUTHORIZATION').split()
+        auth = request.META.get('HTTP_AUTHORIZATION')
+
+        if auth:
+            auth = auth.split()
+        else:
+            return None
 
         if not auth or auth[0].casefold() != self.keyword.casefold().encode():
             return None

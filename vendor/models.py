@@ -12,7 +12,7 @@ class Vendor(models.Model):
     address = models.TextField(null=False, blank=False)
     vendor_code = models.CharField(max_length=10, null=False, blank=False, unique=True)
 
-    on_time_delivery_date = models.FloatField(null=True)
+    on_time_delivery_rate = models.FloatField(null=True)
     quality_rating_avg = models.FloatField(null=True)
     average_response_time = models.FloatField(null=True)
     fulfillment_rate = models.FloatField(null=True)
@@ -25,7 +25,7 @@ class HistoricalPerformance(models.Model):
     vendor = models.ForeignKey("Vendor", null=False, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
 
-    on_time_delivery_date = models.FloatField(null=True)
+    on_time_delivery_rate = models.FloatField(null=True)
     quality_rating_avg = models.FloatField(null=True)
     average_response_time = models.FloatField(null=True)
     fulfillment_rate = models.FloatField(null=True)
