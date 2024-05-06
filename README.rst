@@ -53,4 +53,4 @@ Running tests
 
 To run the tests, you can use the following command:
 
-``poetry run python -m core.manage test --keepdb``
+``poetry run python -m core.manage test tests --keepdb``

@@ -28,7 +28,7 @@ class TestApiEndpoints(APITestCase):
         self.assertEqual(invalid_response.status_code, 400)
 
     def test_account_creation(self):
-        response = self.client.post('/api/accounts/', {'email': 'test@gmail.com', 'password': 'test123'})
+        response = self.client.post('/api/accounts/', {'email': 'test2@gmail.com', 'password': 'test123'})
         self.assertEqual(response.status_code, 201)
 
     def create_vendor(self, name="test", contact_details="test", address="test", vendor_code="test"):
