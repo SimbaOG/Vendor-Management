@@ -35,7 +35,8 @@ Running the project using docker-compose:
  #. Run the command: ``docker compose -f docker-compose.yml up``
 
 Running the project without docker-compose:
------------------------------------------
+-------------------------------------------
+
   #. Create a virtual environment using poetry
   #. Activate the virtual environment
   #. Install the dependencies using poetry: ``poetry install``
