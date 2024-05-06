@@ -30,7 +30,7 @@ class UserAuthentication(TokenAuthentication):
         else:
             return None
 
-        if not auth or auth[0].casefold() != self.keyword.casefold().encode():
+        if not auth or auth[0].casefold() != self.keyword.casefold():
             return None
 
         if len(auth) == 1:

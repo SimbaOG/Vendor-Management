@@ -4,5 +4,11 @@ from .misc import yaml_coerce
 
 
 def get_settings_from_environment(prefix):
+    """
+    This function is used to get the settings from the environment variables.
+    :type prefix: str
+    :param prefix:
+    :return:
+    """
     prefix_len = len(prefix)
     return {key[prefix_len:]: yaml_coerce(value) for key, value in os.environ.items() if key.startswith(prefix)}

@@ -8,14 +8,22 @@ from rest_framework.viewsets import GenericViewSet
 
 from vendor.models import Vendor
 
-from .serializers import VendorSerializer
+from .serializers import VendorPerformanceSerializer, VendorSerializer
 
 # Create your views here.
 
 
 class VendorViewSet(GenericViewSet):
+    """
+    VendorViewSet class is a viewset class that handles all the API requests related to the Vendor model.
+    """
 
     def list(self, request):  # noqa: A003
+        """
+        This method is used to list all the vendors in the database.
+        :param request:
+        :return:
+        """
         vendor_objs = Vendor.objects.all()
 
         serializer = VendorSerializer(vendor_objs, many=True)
@@ -23,6 +31,11 @@ class VendorViewSet(GenericViewSet):
         return Response(serializer.data)
 
     def create(self, request):
+        """
+        This method is used to create a new vendor in the database.
+        :param request:
+        :return:
+        """
 
         received_data = request.data
         serializer = VendorSerializer(data=received_data)
@@ -39,6 +52,14 @@ class VendorViewSet(GenericViewSet):
         url_path='(?P<vid>[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})'
     )
     def handle_single_vendor(self, request, *args, **kwargs):
+        """
+        This method is used to handle the requests related to a single vendor.
+        It can handle GET, PUT and DELETE requests. Which are used to get, update and delete a vendor respectively.
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
 
         vendor_id = self.kwargs['vid']
 
@@ -72,3 +93,24 @@ class VendorViewSet(GenericViewSet):
                 return Response({'detail': 'Vendor updated successfully!'}, status=status.HTTP_200_OK)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(
+        methods=['get'],
+        detail=False,
+        url_path='(?P<vid>[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})/performance'
+    )
+    def get_vendor_performance(self, request, *args, **kwargs):
+        """
+        This method is used to get the performance of a vendor.
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+
+        vendor_id = self.kwargs['vid']
+
+        vendor_obj = get_object_or_404(Vendor, vid=vendor_id)
+
+        serializer = VendorPerformanceSerializer(vendor_obj)
+        return Response(serializer.data)

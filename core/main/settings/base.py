@@ -1,3 +1,7 @@
+"""
+Base settings for Django project. All of the additional settings are build over this.
+"""
+
 from typing import List
 
 DEBUG = False

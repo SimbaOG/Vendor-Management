@@ -17,6 +17,14 @@ def yaml_coerce(value):
 
 
 def string_to_datetime(date_string: str) -> Union[dt, None]:
+    """
+    This function is used to convert a string to a datetime object.
+    :type date_string: str
+    :param date_string:
+    :return:
+    """
+    if not date_string:
+        return None
     try:
         date_time = dt.strptime(date_string, '%Y-%m-%dT%H:%M:%S')
     except ValueError:

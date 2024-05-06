@@ -4,6 +4,7 @@ import uuid
 
 import django.db.models.deletion
 from django.db import migrations, models
+from django.db.migrations import RunSQL
 
 
 class Migration(migrations.Migration):
@@ -13,6 +14,7 @@ class Migration(migrations.Migration):
     dependencies = []
 
     operations = [
+        RunSQL("CREATE SCHEMA vendor;", reverse_sql="DROP SCHEMA vendor CASCADE;"),
         migrations.CreateModel(
             name='Vendor',
             fields=[
