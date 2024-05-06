@@ -7,7 +7,7 @@ from typing import List
 DEBUG = False
 SECRET_KEY = NotImplemented
 
-ALLOWED_HOSTS: List[str] = []
+ALLOWED_HOSTS: List[str] = ['127.0.0.1']
 
 # Application definition
 

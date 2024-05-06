@@ -1,5 +1,5 @@
 # from django.shortcuts import render
-from django.db.utils import IntegrityError
+from django.db import IntegrityError
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import action
@@ -28,6 +28,8 @@ class AccountViewSet(ViewSet):
         received_data = request.data
 
         try:
+            if Account.objects.filter(email=received_data['email']).exists():
+                raise IntegrityError
             Account.objects.create_user(email=received_data['email'], password=received_data['password'])
         except IntegrityError:
             return Response({'status': 'Account Already Exists'}, status=status.HTTP_400_BAD_REQUEST)
