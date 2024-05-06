@@ -3,8 +3,9 @@ Project Requirements
 Depending on how you run it, you will need the following:
 
 *1. Running the project using docker-compose*
+
 Requirements:
-- Docker engine (Yeah, that's it)
+* Docker engine (Yeah, that's it)
 
 *2. Running the project without docker-compose*
 
